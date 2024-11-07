@@ -1,1 +1,14 @@
-<p>list-recipes works!</p>
+@if ($state().loading){
+    <p>Loading</p>
+}@else if ($state().error) {
+    <p style="color: red;">Error</p>
+}@else {
+    <ul>
+        @for(meal of $state().data; track meal.idMeal){
+            <li (click)="goToRecipe(meal.idMeal)">
+                <img style="display: inline-block; width: 80px;"
+                [src]="meal.strMealThumb"/>{{meal.strMeal}}
+            </li>
+        }
+    </ul>
+}
